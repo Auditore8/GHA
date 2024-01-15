@@ -27,3 +27,6 @@ jobs:
 
       - name: Node version
         run: node --version
+        
+      - name: Print the input name to STDOUT
+        run: echo The username is ${{ inputs.username }
