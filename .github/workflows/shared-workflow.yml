@@ -1,16 +1,27 @@
-name: Main Workflow
+name: Shared Workflow
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
+    inputs:
+      some_parameter:
+        required: true
+        description: 'An example parameter'
 
 jobs:
-  trigger-shared-workflow:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger Shared Workflow
-        uses: <username>/<shared-repo-name>/.github/workflows/shared-workflow.yml@main
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          some_parameter: 'example_value'
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
