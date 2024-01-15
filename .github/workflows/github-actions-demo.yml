@@ -1,21 +1,13 @@
 on: push
 jobs:
-  job1:
-    runs-on: ubuntu-latest
+  node:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-16.04, ubuntu-18.04]
+        node: [6, 8, 10]
     steps:
-      - run: echo "job1"
-  job2:
-    runs-on: ubuntu-latest
-    steps:
-      - run: sleep 5
-    needs: job1
-  job3:
-    runs-on: ubuntu-latest
-    steps:
-      - run: sleep 10
-    needs: job1
-  job4:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "job4"
-    needs: [job2, job3]
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node --version
