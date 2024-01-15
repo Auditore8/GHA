@@ -5,8 +5,8 @@ on:
     inputs:
       username:
         description: 'A username passed from the caller workflow'
-        default: 'john-doe'
-        required: false
+        default: 'Jerry'
+        required: true
         type: string
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Install dependencies
         run: npm install -g bats
