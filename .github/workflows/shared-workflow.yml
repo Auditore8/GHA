@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       some_parameter:
-        required: true
+        required: false
         description: 'An example parameter'
 
 jobs:
