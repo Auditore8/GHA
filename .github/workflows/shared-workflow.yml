@@ -3,9 +3,11 @@ name: Shared Workflow
 on:
   workflow_call:
     inputs:
-      some_parameter:
+      username:
+        description: 'A username passed from the caller workflow'
+        default: 'john-doe'
         required: false
-        description: 'An example parameter'
+        type: string
 
 jobs:
   build:
